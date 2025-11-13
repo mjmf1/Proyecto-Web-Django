@@ -11,8 +11,7 @@ def home(request):
 
 def servicios(request):
     servicios = Servicio.objects.all()
-    return render(request, "ProyectoWebApp/servicios.html", {'servicios': servicios})
-    #return HttpResponse("Servicios")
+    return render(request, "servicios/servicios.html", {'servicios': servicios})
 
 def tienda(request):
     return render(request, "ProyectoWebApp/tienda.html")

@@ -1,0 +1,23 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% block title %}Servicios{% endblock %}
+
+{% block content %}
+<section class="servicios">
+    <h1 style="color: white;">Nuestros Servicios</h1>
+    <div class="servicios-grid">
+        {% for servicio in servicios %}
+        <div class="servicio-card">
+            <h3 style="color: white;">{{ servicio.titulo }}</h3>
+            {% if servicio.imagen %}
+                <img src="{{ servicio.imagen.url }}" alt="{{ servicio.titulo }}" style="max-width: 100%; height: auto; margin: 10px 0;">
+            {% endif %}
+            <p style="color: white;">{{ servicio.contenido }}</p>
+            <small style="color: white;">Creado: {{ servicio.created_at|date:"d/m/Y" }}</small>
+        </div>
+        {% empty %}
+        <p style="color: white;">No hay servicios disponibles.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

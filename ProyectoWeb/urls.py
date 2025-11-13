@@ -23,7 +23,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ProyectoWebApp.urls')),  # Incluye las rutas de tu app
-    path('servicios/', include('Servicios.urls')),  # Incluye las rutas de Servicios
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
