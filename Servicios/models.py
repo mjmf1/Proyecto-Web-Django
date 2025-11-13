@@ -2,9 +2,11 @@ from django.db import models
 
 # Create your models here.
 
+
+
 class Servicio(models.Model):
     titulo = models.CharField(max_length=100)
-    contenido = models.CharField(max_length=50)
+    contenido = models.TextField()  # Cambiado a TextField para más contenido
     imagen = models.ImageField(upload_to='servicios/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -15,3 +17,4 @@ class Servicio(models.Model):
 
     def __str__(self):
         return self.titulo
+    
