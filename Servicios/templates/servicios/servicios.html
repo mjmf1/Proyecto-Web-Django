@@ -6,10 +6,10 @@
 
     {% for servicio in servicios %}
         <section class="page-section clearfix">
-            <div class="container">
+            <div class="container"> 
                 <div class="intro">
                     {% if servicio.imagen %}
-                        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{ servicio.imagen.url }}" alt="">
+                        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{ servicio.imagen.url }}" alt="{{ servicio.titulo }}">
                     {% endif %}
                     <div class="intro-text left-0 text-center bg-faded p-5 rounded">
                         <h2 class="section-heading mb-4">
