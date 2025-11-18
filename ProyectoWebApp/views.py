@@ -15,12 +15,9 @@ def servicios(request):
 
 def tienda(request):
     return render(request, "ProyectoWebApp/tienda.html")
-    #return HttpResponse("Tienda")
-
-def blog(request):
-    return render(request, "ProyectoWebApp/blog.html")
-    #return HttpResponse("Blog")
+    #return HttpResponse("Tienda")  
 
 def contacto(request):
     return render(request, "ProyectoWebApp/contacto.html")
     #return HttpResponse("Contacto")
+     
