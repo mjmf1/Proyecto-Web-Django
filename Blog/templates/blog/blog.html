@@ -38,4 +38,16 @@
         </section>
     {% endfor %}
 
+    <section>
+        <div style="width: 75%; margin: auto; text-align: center; color: white;" >
+            Categorias: &nbsp;
+            {% for post in posts %}
+                {% for categoria in post.categoria.all %}
+                    {{ categoria.nombre }} &nbsp;&nbsp;&nbsp;
+                {% endfor %}
+            {% endfor %}
+
+        </div>
+    </section>
+
 {% endblock %}
