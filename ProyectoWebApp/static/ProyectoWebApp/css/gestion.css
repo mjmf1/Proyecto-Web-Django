@@ -258,10 +258,11 @@ p {
 
 a.link{
   color: rgba(255, 255, 255, 0.7);
+  text-decoration: none; 
 }
 
 a.link:hover{
-  text-decoration: none;
+  text-decoration: none; 
   color: rgba(255, 255, 255, 0.4);
 }
 
