@@ -5,12 +5,19 @@
 {% block content %}
 
 {% load static %}
+ 
+    <div class="contenedorFormulario">
+    {% if request.GET.valido %}
+        <p style="color: lightgreen; text-align: center;">¡Mensaje enviado correctamente!</p>
+    {% endif %}
     
     <form action="" method="post" style="color: white; text-align: center;">
         <h1 style="color: white;">Formulario de Contacto</h1>
         {% csrf_token %}
-     <div class="contenedorFormulario"><table>{{ form.as_table }}</table> 
-    <button type="submit" style="width: 150px;">Enviar</button></div>
+     <table>{{ form.as_table }}</table> 
+    <button type="submit" style="width: 150px;">Enviar</button>
         
     </form>
+    </div>
+    {{request.POST}}
 {% endblock %}

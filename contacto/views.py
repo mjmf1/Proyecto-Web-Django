@@ -17,7 +17,7 @@ def contacto(request):
             # Ejemplo: imprimir en consola (o enviar email)
             print(f"Nuevo mensaje de {nombre} ({correo}): {asunto} - {mensaje}")
             
-            return redirect('contacto')  # redirige a la misma página o a un "gracias"
+            return redirect('/contacto/?valido=1')  # redirige a la misma página o a un "gracias"
     else:
         form = ContactoForm()
     
