@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Servicios',
     'Blog',
     'contacto',
+    'Tienda',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,9 @@ EMAIL_HOST_USER = "marcomora61@gmail.com"
 EMAIL_HOST_PASSWORD = "ofwa ygkb msvq ubvr"
 
 #EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+from decouple import config
+
+EMAIL_HOST_USER = config("EMAIL_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_PASS")
+

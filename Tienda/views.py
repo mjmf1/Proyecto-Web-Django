@@ -5,9 +5,6 @@ from Servicios.models import Servicio
 
 # Create your views here.
 
-def home(request):
-    return render(request, "ProyectoWebApp/home.html")
-    #return HttpResponse("Home")
-
-
-     
+def tienda(request):
+    return render(request, "tienda/tienda.html")
+    #return HttpResponse("Tienda")  
