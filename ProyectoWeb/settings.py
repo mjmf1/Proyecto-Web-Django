@@ -138,13 +138,12 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = "marcomora61@gmail.com"
-EMAIL_HOST_PASSWORD = "szye hbbz qoel hbji"
+import os
+
+EMAIL_HOST_USER = os.getenv("EMAIL_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS")
+
 
 #EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-from decouple import config
-
-EMAIL_HOST_USER = config("EMAIL_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_PASS")
 
