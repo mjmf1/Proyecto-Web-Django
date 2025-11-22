@@ -148,5 +148,8 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-load_dotenv(BASE_DIR / ".env")  # Carga las variables de entorno desde .env
+# Cargar variables del .env
+load_dotenv()  
 
+EMAIL_HOST_USER = os.getenv("EMAIL_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS")

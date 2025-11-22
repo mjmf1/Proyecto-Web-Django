@@ -6,6 +6,25 @@
 
 {% load static %}
 
-<h2>Esta es la página de inicio</h2>
-<p>Todo está funcionando correctamente 🎉</p>
+<div class="container">
+
+    <div class="row">
+
+    {% for producto in productos %}
+    <div class="col-md-3">
+
+     <div class="card" style="width: 100%; margin: 5px 5px;">
+        <img src="{{producto.imagen.url}}" class="card-img-top" alt="">
+
+            <div class="card-body" style="text-align: center;">
+            <h5 class="card-title">{{producto.nombre}}</h5>
+            <p class="card-text">{{producto.precio}} &nbsp;$</p>
+            
+            </div>
+        </div> 
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
