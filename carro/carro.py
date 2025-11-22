@@ -47,7 +47,19 @@ class Carro:
                                 self.eliminar(producto)
                         break
                 self.guardar_carro() 
-                    
+
     def limpiar_carro(self):
             self.session["carro"] = {}
             self.session.modified = True
+            
+    def total_carro(self):
+            total = 0
+            for key, value in self.carro.items():
+                total += int(value["cantidad"]) * float(value["precio"])
+            return total
+        
+    def obtener_productos(self):
+            productos = []
+            for key, value in self.carro.items():
+                productos.append(value)
+            return productos
