@@ -16,12 +16,34 @@ class Carro:
                 "nombre": producto.nombre,
                 "precio": str(producto.precio),
                 "cantidad": 1,
-                "imagen": producto.imagen.url,
+                "imagen": producto.imagen.url,  
             }
         else:
-            self.carro[id]["cantidad"] += 1
+            for key, value in self.carro.items():
+                if key == id:
+                    value["cantidad"] += 1
+                    break
         self.guardar_carro()
         
     def guardar_carro(self):
         self.session["carro"] = self.carro
         self.session.modified = True
+        
+    def eliminar(self, producto):
+            id = str(producto.id)
+            if id in self.carro:
+                del self.carro[id]
+                self.guardar_carro()
+
+    def disminuir_cantidad(self, producto):
+            id = str(producto.id)
+            if id in self.carro.keys():
+                for key, value in self.carro.items():
+                    if key == id:
+                        value["cantidad"] -= 1
+                        if value["cantidad"] < 1:
+                            self.eliminar(producto)
+                            if value["cantidad"] < 1:
+                                self.eliminar(producto)
+                        break
+                self.guardar_carro() 
