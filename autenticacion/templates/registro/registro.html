@@ -1,0 +1,17 @@
+fsdfsd{% extends "ProyectoWebApp/base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<form action="" method="post" style="color:white">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Registrarse</button>
+
+</form>
+
+{% endblock %}
