@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'Tienda',
     'carro',
     'autenticacion',
+    'crispy_forms',
+     "crispy_bootstrap4", 
 ]
 
 MIDDLEWARE = [
@@ -156,3 +158,6 @@ load_dotenv()
 
 EMAIL_HOST_USER = os.getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS")
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"

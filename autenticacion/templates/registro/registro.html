@@ -1,17 +1,20 @@
-fsdfsd{% extends "ProyectoWebApp/base.html" %}
+{% extends "ProyectoWebApp/base.html" %}
 
-{% block title %}Inicio{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block title %}Registro{% endblock %}
 
 {% block content %}
+<div class="container" style="color:white">
 
-{% load static %}
+    <form method="POST">
+        {% csrf_token %}
+        <div style="width:75%; margin:auto;"> 
+        {{ form|crispy }}
+        
+        <button type="submit" class="btn btn-success">Registrarse</button>
+        </div>
+    </form>
 
-<form action="" method="post" style="color:white">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Registrarse</button>
-
-</form>
-
+</div>
 {% endblock %}
