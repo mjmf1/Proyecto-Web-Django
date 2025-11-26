@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth import login
 
 class VRegistro(View):
-    template_name = "registro/registro.html"  # tu plantilla
+    template_name = "registro/registro.html"
 
     def get(self, request):
         form = UserCreationForm()
@@ -12,8 +13,13 @@ class VRegistro(View):
 
     def post(self, request):
         form = UserCreationForm(request.POST)
+
         if form.is_valid():
-            form.save()
+            usuario = form.save()
+            login(request, usuario)
             messages.success(request, "Usuario registrado correctamente")
-            return redirect('login')  # Cambia 'login' por tu url de login
+            return redirect('Home')  # Cambia por la URL que tengas
+
+        # Si no es válido → muestra errores
+        messages.error(request, "Error al registrar el usuario")
         return render(request, self.template_name, {'form': form})
