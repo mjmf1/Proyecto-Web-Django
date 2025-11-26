@@ -32,7 +32,7 @@
         {% if user.is_authenticated %}
             Hola, {{ user.username }} | <a href="{% url 'logout' %}" style="color: white;">Cerrar sesión</a>
         {% else %}
-            <a href="#" style="color: white;">Iniciar sesión</a> | <a href="{% url 'autenticacion' %}" style="color: white;">Registrarse</a>
+            <a href="{% url 'login' %}" style="color: white;">Iniciar sesión</a> | <a href="{% url 'autenticacion' %}" style="color: white;">Registrarse</a>
         {% endif %}
       </div>
  <!-- Navbar -->
