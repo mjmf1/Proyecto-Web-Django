@@ -1,26 +1,14 @@
 
 from django.shortcuts import render, HttpResponse
 from Servicios.models import Servicio
-
+from carro.carro import Carro
 
 # Create your views here.
 
 def home(request):
+    carro = Carro(request) 
     return render(request, "ProyectoWebApp/home.html")
     #return HttpResponse("Home")
 
-def servicios(request):
-    servicios = Servicio.objects.all()
-    return render(request, "servicios/servicios.html", {'servicios': servicios})
 
-def tienda(request):
-    return render(request, "ProyectoWebApp/tienda.html")
-    #return HttpResponse("Tienda")
-
-def blog(request):
-    return render(request, "ProyectoWebApp/blog.html")
-    #return HttpResponse("Blog")
-
-def contacto(request):
-    return render(request, "ProyectoWebApp/contacto.html")
-    #return HttpResponse("Contacto")
+     

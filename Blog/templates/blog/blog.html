@@ -1,0 +1,53 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% block title %}Servicios{% endblock %}
+
+{% block content %}
+
+    {% for post in posts %}
+        <section class="page-section clearfix">
+            <div class="container">
+                <div class="intro">
+                    {% if post.imagen %}
+                        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{ post.imagen.url }}" alt="{{ post.titulo }}" style = "width: 50%;">
+                    {% endif %}
+                    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-lower">{{ post.titulo }}</span>
+                            <span class="section-heading-upper">{{ post.contenido }}</span>
+                            
+                        </h2>
+                        <div style="text-align: left; font-size: 0.8em;">
+                            Autor: {{ post.autor }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% empty %}
+        <section class="page-section clearfix">
+            <div class="container">
+                <div class="intro">
+                    <div class="intro-text text-center bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-lower">No hay blog disponibles</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+
+    <section>
+        <div style="width: 75%; margin: auto; text-align: center; color: white;" >
+            Categorias: &nbsp;
+            {% for post in posts %}
+                {% for categoria in post.categoria.all %}
+                  <a href="{% url 'blog:categoria' categoria.id %}" class="link" >{{ categoria.nombre }}</a>  &nbsp;&nbsp;&nbsp;
+                {% endfor %}
+            {% endfor %}
+
+        </div>
+    </section>
+
+{% endblock %}

@@ -258,10 +258,11 @@ p {
 
 a.link{
   color: rgba(255, 255, 255, 0.7);
+  text-decoration: none; 
 }
 
 a.link:hover{
-  text-decoration: none;
+  text-decoration: none; 
   color: rgba(255, 255, 255, 0.4);
 }
 
@@ -276,4 +277,12 @@ ul.errorlist{
   padding-top: .75rem;
   font-style: italic;
   color: red;
+}
+
+.contenedorFormulario{
+   background-color: rgba(24, 64, 8, 0.8);
+   width: 50%;
+   margin:  10px auto;
+   border-radius: 5px;  
+   padding: 1px 0px;
 }

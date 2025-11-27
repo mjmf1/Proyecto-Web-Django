@@ -1,0 +1,20 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="container" style="color:white">
+
+    <form method="POST">
+        {% csrf_token %}
+        <div style="width:75%; margin:auto;"> 
+        {{ form|crispy }}
+        
+        <button type="submit" class="btn btn-success">Registrarse</button>
+        </div>
+    </form>
+
+</div>
+{% endblock %}
