@@ -1,29 +1,73 @@
-from pyexpat.errors import messages
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.mail import send_mail
+from django.conf import settings
 
 from Pedidos.models import LineaPedido, Pedido
 from carro.carro import Carro
 
-@login_required(login_url='/autenticacion/login/')  # <- Redirige si no ha iniciado sesión
+
+@login_required(login_url='/autenticacion/login/')  # Redirige si no ha iniciado sesión
 def procesar_pedido(request):
+
+    # 1. Crear pedido
     pedido = Pedido.objects.create(usuario=request.user)
-    carro =Carro(request)
-    lineas_pedido = list()
+
+    # 2. Obtener carrito
+    carro = Carro(request)
+
+    lineas_pedido = []
+
+    # 3. Crear líneas del pedido
     for key, value in carro.carro.items():
-        lineas_pedido.append(LineaPedido({
-            'pedido': pedido,  
-            'producto_id': key,
-            'cantidad': value['cantidad'],
-            'user': request.user
-        }))
-    LineaPedido.objects.bulk_create([linea for linea in lineas_pedido])
+        linea = LineaPedido(
+            pedido=pedido,
+            producto_id=key,
+            cantidad=value['cantidad'],
+            user=request.user
+        )
+        lineas_pedido.append(linea)
+
+    # 4. Guardar todas las líneas
+    LineaPedido.objects.bulk_create(lineas_pedido)
+
+    # 5. Enviar correo
     enviar_email_pedido(
         pedido=pedido,
         lineas_pedido=lineas_pedido,
         nombre_usuario=request.user.username,
         email_usuario=request.user.email
     )
+
+    # 6. Mostrar mensaje de éxito
     messages.success(request, "El pedido se ha creado correctamente")
-    carro.limpiar()
-    return render(request, 'Pedidos/pedido_completado.html')    
+
+    # 7. Redirigir a tienda
+    return redirect("../tienda")
+
+
+def enviar_email_pedido(**kwargs):
+
+    asunto = "Nuevo pedido creado"
+
+    mensaje = render_to_string("emails/pedido.html", {
+        'pedido': kwargs.get('pedido'),
+        'lineas_pedido': kwargs.get('lineas_pedido'),
+        'nombre_usuario': kwargs.get('nombre_usuario')
+    })
+
+    mensaje_texto = strip_tags(mensaje)
+
+    from_email = settings.EMAIL_HOST_USER  # <-- cámbialo por el tuyo configurado en settings
+    to = kwargs.get(settings.EMAIL_HOST_USER )
+
+    send_mail(
+        asunto,
+        mensaje_texto,
+        from_email,
+        [to],
+        html_message=mensaje
+    )
