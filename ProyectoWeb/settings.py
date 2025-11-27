@@ -151,6 +151,7 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS")
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
 
 # Cargar variables del .env
@@ -161,3 +162,11 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS")
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+MESSAGE_TAGS = {    
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

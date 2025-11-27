@@ -10,6 +10,17 @@
     <form method="POST">
         {% csrf_token %}
         <div style="width:75%; margin:auto;"> 
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
         {{ form|crispy }}
         
         <button type="submit" class="btn btn-success">Iniciar sesión</button>
