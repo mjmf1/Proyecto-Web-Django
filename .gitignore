@@ -17,3 +17,16 @@ db.sqlite3
 *.env
 /staticfiles/
 media/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Base de datos local
+db.sqlite3
+
+# Entornos virtuales
+venv/
+
